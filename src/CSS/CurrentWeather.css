@@ -1,0 +1,43 @@
+.current-weather-container {
+    min-height: 100vh;
+    text-align: center;
+    overflow: auto;
+}
+.date {
+    margin-top: 13vh;
+    font-weight: 400;
+    font-size: 1.5rem;
+}
+.location {
+    min-height: 35px;
+    margin-top: 10px;
+    font-weight: 500;
+    font-size: 1.5rem;
+}
+.temp-container {
+    margin-top: 5vh;
+}
+.wi {
+    font-size: 4.5rem;
+}
+.actual-temp {
+    display: inline;
+    font-weight: bold;
+    margin-left: 70px;
+    font-size: 2.5rem;
+}
+
+
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+
+}
+/* Medium devices (landscape tablets, 768px and down) */
+@media only screen and (max-width: 768px) {
+    
+} 
+/* Large devices (laptops/desktops, 992px and down) */
+@media only screen and (max-width: 992px) {
+    
+}

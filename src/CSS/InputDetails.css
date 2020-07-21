@@ -1,0 +1,22 @@
+.form {
+    margin-top: 10vh;
+    display: inline-flex;
+}
+.cel-fahren-select {
+    margin-top: 10vh;
+    display: inline-flex;
+}
+.city-field {
+    margin: 0 10px 0 10px;
+}
+.error {
+    min-height: 22px;
+    color: brown;
+    font-weight: 500;
+}
+.submit-button {
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
