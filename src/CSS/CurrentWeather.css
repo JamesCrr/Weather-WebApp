@@ -2,6 +2,9 @@
     min-height: 100vh;
     text-align: center;
     overflow: auto;
+
+    background-position: center bottom;
+    background-size: cover;
 }
 .date {
     margin-top: 13vh;
