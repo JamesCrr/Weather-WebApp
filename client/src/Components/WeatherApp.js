@@ -22,7 +22,7 @@ class WeatherApp extends React.Component {
     
     async fetchCurrentWeather(event, strCity) {
         if (event !== null)
-        event.preventDefault()
+            event.preventDefault()
         const city = strCity
         const API_KEY = process.env.REACT_APP_OPENWEATHERKEY;
         // const country = strCountry
