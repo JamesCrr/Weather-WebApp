@@ -1,13 +1,14 @@
 .form {
-    margin-top: 10vh;
+    margin-top: 8vh;
     display: inline-flex;
 }
 .cel-fahren-select {
-    margin-top: 10vh;
+    margin-top: 8vh;
     display: inline-flex;
 }
 .city-field {
     margin: 0 10px 0 10px;
+    color: rgb(204, 204, 204);
 }
 .error {
     min-height: 22px;

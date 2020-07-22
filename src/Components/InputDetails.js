@@ -1,5 +1,6 @@
 import React from "react"
 import { StylesProvider } from "@material-ui/core/styles";
+import { styled } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -14,8 +15,51 @@ class InputDetails extends React.Component {
 
         this.state = {
             city: "",
-
         }
+        this.MyTextField = styled(TextField)({
+            '& .MuiInputBase-input': {
+                color: 'white',
+            },
+            '& label': {
+                color: 'white',
+            },
+            '& label.Mui-focused': {
+                color: 'green',
+            },
+            '& .MuiOutlinedInput-root': {
+                '& fieldset': {
+                    borderColor: 'red',
+                },
+                '&:hover fieldset': {
+                    borderColor: 'yellow',
+                },
+                '&.Mui-focused fieldset': {
+                    borderColor: 'green',
+                },
+            },
+        });
+        this.MyFormControl = styled(FormControl)({
+            '& label': {
+                color: 'white',
+            },
+            '& label.Mui-focused': {
+                color: 'green',
+            },
+            '& .MuiSelect-outlined': {
+                color: 'white',
+            },
+            '& .MuiOutlinedInput-root': {
+                '& fieldset': {
+                    borderColor: 'red',
+                },
+                '&:hover fieldset': {
+                    borderColor: 'yellow',
+                },
+                '&.Mui-focused fieldset': {
+                    borderColor: 'green',
+                },
+            },
+        });
     }
 
     onInputChange = (event) => {
@@ -34,14 +78,15 @@ class InputDetails extends React.Component {
     }
 
     render() {
+
         return (
             <StylesProvider injectFirst>
             {/* City Name */}
             <form className="form" autoComplete="off" onSubmit={(e)=>this.onSubmitCity(e)}>
-                <TextField className="city-field" value={this.state.city} onChange={this.onInputChange} name="city" label="City" size="small" variant="outlined" />
+                <this.MyTextField className="city-field" value={this.state.city} onChange={this.onInputChange} name="city" label="City" size="small" variant="outlined" />
             </form>
             {/* Temp Details */}
-            <FormControl className="cel-fahren-select" variant="outlined" size="small" hiddenLabel>
+            <this.MyFormControl className="cel-fahren-select" variant="outlined" size="small" hiddenLabel>
                 <InputLabel>Type</InputLabel>
                 <Select value={this.props.tempRepresentation}
                     onChange={(e) => this.props.setTempRepresentationFunc(e)}
@@ -50,7 +95,7 @@ class InputDetails extends React.Component {
                     <MenuItem value="c">°C</MenuItem>
                     <MenuItem value="f">°F</MenuItem>
                 </Select>
-            </FormControl>
+            </this.MyFormControl>
 
             <p className="error">{this.props.errorMsg === "" ? "" : "*"}{this.props.errorMsg}</p>
             <Button 

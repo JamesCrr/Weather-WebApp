@@ -1,13 +1,36 @@
-.current-weather-container {
+h3, i {
+    color: rgb(204, 204, 204);
+}
+.current-weather-bg-img {
     min-height: 100vh;
     text-align: center;
     overflow: auto;
-
+    
+    background-color: rgb(32, 31, 31);
     background-position: center bottom;
     background-size: cover;
+
+    animation-name: ani_MoveBG;
+    animation-duration: 35s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+.current-weather-bg-color {
+    min-height: 100vh;
+    transition: background-color 250ms linear;
+}
+.current-weather-bg-color.black {
+    background-color: rgb(32, 31, 31);
+}
+.current-weather-content {
+    margin-top: 11vh;
+    display: inline-block;
+    padding: 45px;
+    border-radius: 10%;
+    background-color: rgba(34, 34, 39, 0.801);
 }
 .date {
-    margin-top: 13vh;
     font-weight: 400;
     font-size: 1.5rem;
 }
@@ -15,7 +38,7 @@
     min-height: 35px;
     margin-top: 10px;
     font-weight: 500;
-    font-size: 1.5rem;
+    font-size: 1.7rem;
 }
 .temp-container {
     margin-top: 5vh;
@@ -44,3 +67,22 @@
 @media only screen and (max-width: 992px) {
     
 }
+
+
+@keyframes ani_MoveBG {
+    0% {
+		background-position: center bottom;
+    }
+    /* 10% {
+        background-position: center bottom;
+    } */
+	50% {
+		background-position: 0% 80%;
+    }
+    /* 90% {
+        background-position: center bottom;
+    } */
+	100% {
+		background-position: center bottom;
+	}
+ }
