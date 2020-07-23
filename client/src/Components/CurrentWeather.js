@@ -1,5 +1,5 @@
 import React from "react"
-import Unsplash from 'unsplash-js';
+import axios from 'axios';
 import InputDetails from "./InputDetails"
 import "../Weather-icons/css/weather-icons.min.css"
 import "../CSS/CurrentWeather.css"
@@ -10,11 +10,6 @@ class CurrentWeather extends React.Component {
 
         this.backgroundColorRef = React.createRef();
         this.timerInterval = null
-        this.unsplashImgLength = 15
-        this.prevImgID = 0
-        this.unsplash = new Unsplash({ 
-            accessKey: process.env.REACT_APP_UNSPLASHKEY
-        });
         let newDate = new Date()
         this.state = {
             dateStr: newDate.toLocaleDateString(),
@@ -75,19 +70,17 @@ class CurrentWeather extends React.Component {
         var weatherWord = this.props.weatherData.weather[0].main
         if (weatherWord === "Clear")
             weatherWord = "Sky"
-        this.unsplash.search.photos(weatherWord, 1, this.unsplashImgLength, { orientation: "landscape" })
+        // Construct POST JSON
+        const postData = {
+            word: weatherWord
+        }
+        axios.post('api/unsplash', postData)
             .then(res => {
-                if (!res.ok)
-                    throw Error(res.status)
-                res = res.json()
-                return res;
-            })
-            .then(resJSON => {
-                console.log(resJSON)
-                var randomID = Math.floor(Math.random() * this.unsplashImgLength);
+                console.log(res.data)
+                var randomID = Math.floor(Math.random() * res.data.results.length);
                 if (randomID === this.state.unsplashImgID)
-                    randomID++
-                var imgStr = resJSON.results[randomID].urls.regular
+                    randomID = Math.floor(Math.random() * res.data.results.length)
+                var imgStr = res.data.results[randomID].urls.regular
                 this.setState({
                     unsplashImgURL: imgStr,
                     unsplashImgID: randomID,
@@ -115,7 +108,7 @@ class CurrentWeather extends React.Component {
                 bgColorDOM.classList.remove("black")
             }
             // Fade out, then update Image
-            this.timerInterval = setInterval(this.updateBackgroundImage, 250)
+            this.timerInterval = setInterval(this.updateBackgroundImage, 350)
             bgColorDOM.classList.add("black")
         }
     }

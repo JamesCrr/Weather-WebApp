@@ -1,4 +1,5 @@
 import React from "react"
+import axios from 'axios';
 import CurrentWeather from "./CurrentWeather"
 
 class WeatherApp extends React.Component {
@@ -24,17 +25,27 @@ class WeatherApp extends React.Component {
         if (event !== null)
             event.preventDefault()
         const city = strCity
-        const API_KEY = process.env.REACT_APP_OPENWEATHERKEY;
         // const country = strCountry
-        const apiData = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=${API_KEY}`)
+        // Construct POST JSON
+        const postData = {
+            cityName: city
+        }
+        axios.post('api/weather', postData)
           .then((res) => {
-            if (!res.ok) {
-                return null;
+              console.log(res.data);
+            if (!res.data.main) {
+                this.weatherDataReceived(null)
+                return null
             }
-            res = res.json()
-            return res;
+            const newData = res.data
+            this.weatherDataReceived(newData)
+            return newData;
           })
-        
+          .catch(err => {
+            console.log(err)
+          });
+    }
+    weatherDataReceived = (apiData) => {
         if (apiData === null) {
             this.setState({
                 // weatherData : null,
