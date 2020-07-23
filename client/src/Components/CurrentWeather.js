@@ -1,5 +1,8 @@
 import React from "react"
 import axios from 'axios';
+import { StylesProvider, styled } from "@material-ui/core/styles";
+import IconButton from '@material-ui/core/IconButton';
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore"
 import InputDetails from "./InputDetails"
 import "../Weather-icons/css/weather-icons.min.css"
 import "../CSS/CurrentWeather.css"
@@ -9,6 +12,12 @@ class CurrentWeather extends React.Component {
         super(props)
 
         this.backgroundColorRef = React.createRef();
+        this.MyIconButton = styled(IconButton)({
+            '&:hover': {
+                backgroundColor: "rgba(0, 0, 0, 0.801);",
+            }
+        });
+
         this.timerInterval = null
         let newDate = new Date()
         this.state = {
@@ -130,6 +139,16 @@ class CurrentWeather extends React.Component {
                         tempRepresentation={this.props.tempRepresentation}
                         setTempRepresentationFunc={this.props.setTempRepresentationFunc}/>
                 </div>
+
+                <div>
+                    <StylesProvider injectFirst>
+                        <div className="expandMore-container">
+                            <this.MyIconButton className="expandMore-button" onClick={this.props.expandMoreButtonPressed}>
+                                <ExpandMoreIcon className="expandMore-icon"/>
+                            </this.MyIconButton>
+                        </div>
+                    </StylesProvider>
+                </div>    
             </div>
             </div>
         )

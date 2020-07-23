@@ -53,6 +53,18 @@ h3, i {
     font-size: 2.5rem;
 }
 
+.expandMore-container {
+    margin-top: 60px;
+    border-radius: 50%;
+    background-color: rgba(34, 34, 39, 0.801);
+    display: inline-block;
+}
+.expandMore-button {
+    color: rgb(204, 204, 204);
+}
+.expandMore-icon {
+    font-size: 55px;
+}
 
 
 /* Extra small devices (phones, 600px and down) */

@@ -45,6 +45,20 @@ app.post('/api/weather', function(req, res) {
             res.send(error);
         });
 });
+app.post('/api/weather5day', function(req, res) {
+    const cityName = req.body.cityName;
+    const API_KEY = process.env.REACT_APP_OPENWEATHERKEY
+    const fetchReq = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&APPID=${API_KEY}`
+    axios.get(fetchReq)
+        .then(response => {
+            // console.log(response.data);
+            res.send(response.data);
+        })
+        .catch(error => {
+            // console.log(error);
+            res.send(error);
+        });
+});
 app.post('/api/unsplash', function(req, res) {
     const imageKeyWord = req.body.word;
     const imagePages = 1

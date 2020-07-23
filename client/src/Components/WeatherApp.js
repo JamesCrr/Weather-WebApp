@@ -1,6 +1,7 @@
 import React from "react"
 import axios from 'axios';
 import CurrentWeather from "./CurrentWeather"
+import WeatherDetails from "./WeatherDetails"
 
 class WeatherApp extends React.Component {
     constructor() {
@@ -8,44 +9,53 @@ class WeatherApp extends React.Component {
         
         this.state = {
             weatherData : null,
+            weather5DayData: null,
             tempRepresentation: "c",
             errorMessage: ""
         }
         this.fetchCurrentWeather = this.fetchCurrentWeather.bind(this);
+        this.detailsRef = React.createRef()
     }
     
     setTempRepresentation = (event) => {
-        // event.preventDefault()
+        event.preventDefault()
         this.setState({
             tempRepresentation: event.target.value
         })
+    }
+
+    expandMoreButtonPressed = (event) => {
+        event.preventDefault()
+        // Scroll downwards
+        window.scrollTo(0, this.detailsRef.current.offsetTop)
     }
     
     async fetchCurrentWeather(event, strCity) {
         if (event !== null)
             event.preventDefault()
+        
+        // Construct POST JSON
         const city = strCity
         // const country = strCountry
-        // Construct POST JSON
         const postData = {
             cityName: city
         }
         axios.post('api/weather', postData)
           .then((res) => {
-              console.log(res.data);
+            // console.log(res.data);
             if (!res.data.main) {
-                this.weatherDataReceived(null)
+                this.currentWeatherDataReceived(null)
                 return null
             }
             const newData = res.data
-            this.weatherDataReceived(newData)
+            this.currentWeatherDataReceived(newData)
             return newData;
           })
           .catch(err => {
             console.log(err)
           });
     }
-    weatherDataReceived = (apiData) => {
+    currentWeatherDataReceived = (apiData) => {
         if (apiData === null) {
             this.setState({
                 // weatherData : null,
@@ -60,6 +70,37 @@ class WeatherApp extends React.Component {
         console.log(apiData)
     }
 
+    async fetch5DayWeather(strCity) {
+        // Construct POST JSON
+        const city = strCity
+        // const country = strCountry
+        const postData = {
+            cityName: city
+        }
+        axios.post('api/weather5day', postData)
+          .then((res) => {
+            // console.log(res.data);
+            if (!res.data.main) {
+                this.fiveDayWeatherDataReceived(null)
+                return null
+            }
+            const newData = res.data
+            this.fiveDayWeatherDataReceived(newData)
+            return newData;
+          })
+          .catch(err => {
+            console.log(err)
+          });
+    }
+    fiveDayWeatherDataReceived = (apiFiveDayData) => {
+        if (apiFiveDayData === null) 
+            return
+        this.setState({
+            weather5DayData: apiFiveDayData,
+        })
+        console.log("Five: " + apiFiveDayData)
+    } 
+
     render() {
         return (
             <div>
@@ -68,8 +109,13 @@ class WeatherApp extends React.Component {
                     errorMsg={this.state.errorMessage} 
                     tempRepresentation={this.state.tempRepresentation}
                     setTempRepresentationFunc={this.setTempRepresentation}
+                    expandMoreButtonPressed={this.expandMoreButtonPressed}
                 />
-                <p style={{height:"100vh", backgroundColor:"red"}}>Bla bla bla</p>
+                <div ref={this.detailsRef} ></div>
+                <WeatherDetails weatherData={this.state.weatherData}
+                    fiveDayWeatherData={this.state.weather5DayData}
+                    tempRepresentation={this.state.tempRepresentation}
+                />
             </div>
         )
     }

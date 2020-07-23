@@ -1,6 +1,5 @@
 import React from "react"
-import { StylesProvider } from "@material-ui/core/styles";
-import { styled } from '@material-ui/core/styles';
+import { StylesProvider, styled } from "@material-ui/core/styles";
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import InputLabel from '@material-ui/core/InputLabel';
