@@ -67,17 +67,58 @@ h3, i {
 }
 
 
-/* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
+    .current-weather-content {
+        margin-top: 8vh;
+        padding: 25px;
+    }
+    .date {
+        font-size: 1.2rem;
+    }
+    .location {
+        font-size: 1.4rem;
+    }
+    .temp-container {
+        margin-top: 5vh;
+    }
+    .wi {
+        font-size: 3.8rem;
+    }
+    .actual-temp {
+        margin-left: 60px;
+        font-size: 2.2rem;
+    }
 
+    .expandMore-container {
+        margin-top: 80px;
+    }
 }
-/* Medium devices (landscape tablets, 768px and down) */
-@media only screen and (max-width: 768px) {
-    
-} 
-/* Large devices (laptops/desktops, 992px and down) */
-@media only screen and (max-width: 992px) {
-    
+@media only screen and (max-width: 400px) {
+    .current-weather-content {
+        margin-top: 7vh;
+        padding: 35px 10px;
+    }
+    .date {
+        font-size: 1.0rem;
+    }
+    .location {
+        font-size: 1.2rem;
+    }
+    .temp-container {
+        margin-top: 3vh;
+    }
+    .wi {
+        font-size: 3.8rem;
+    }
+    .actual-temp {
+        margin-left: 40px;
+        font-size: 2.0rem;
+    }
+}
+@media only screen and (max-width: 330px) {
+    .expandMore-container {
+        margin-top: 60px;
+    }
 }
 
 

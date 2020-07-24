@@ -21,3 +21,19 @@
     margin-right: auto;
     display: block;
 }
+
+
+@media only screen and (max-width: 600px) {
+
+}
+@media only screen and (max-width: 400px) {
+
+}
+@media only screen and (max-width: 330px) {
+    .form {
+        display: block;
+    }
+    .cel-fahren-select {
+        margin-top: 2vh;
+    }
+}
