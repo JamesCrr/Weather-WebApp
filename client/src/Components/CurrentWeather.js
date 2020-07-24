@@ -30,13 +30,6 @@ class CurrentWeather extends React.Component {
         }
     }
 
-    componentDidMount() {
-        // Get current Location
-
-        // If unable, set default Location
-        this.props.fetchWeatherFunc(null, "Auckland")
-    }
-
     componentDidUpdate(prevProps) {
         if (prevProps.weatherData !== this.props.weatherData) {
           if (this.props.weatherData === null) {
@@ -63,6 +56,7 @@ class CurrentWeather extends React.Component {
             tempIcon = "°C"
         }
         else{
+            newTemp = (newTemp - 273.15) * 9/5 + 32
             tempIcon = "°F"
         }
         newTemp = newTemp.toFixed(2)
@@ -85,7 +79,7 @@ class CurrentWeather extends React.Component {
         }
         axios.post('api/unsplash', postData)
             .then(res => {
-                console.log(res.data)
+                // console.log(res.data)
                 var randomID = Math.floor(Math.random() * res.data.results.length);
                 if (randomID === this.state.unsplashImgID)
                     randomID = Math.floor(Math.random() * res.data.results.length)

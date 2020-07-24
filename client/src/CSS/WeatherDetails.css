@@ -1,3 +1,7 @@
 html {
     scroll-behavior: smooth;
 }
+
+.chart {
+    margin: 10vh 2% 0 2%;
+}

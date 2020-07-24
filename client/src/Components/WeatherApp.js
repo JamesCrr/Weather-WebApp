@@ -17,6 +17,13 @@ class WeatherApp extends React.Component {
         this.detailsRef = React.createRef()
     }
     
+    componentDidMount() {
+        // Get current Location
+
+        // If unable, set default Location
+        this.fetchCurrentWeather(null, "Auckland")
+    }
+
     setTempRepresentation = (event) => {
         event.preventDefault()
         this.setState({
@@ -68,9 +75,14 @@ class WeatherApp extends React.Component {
             errorMessage: ""
         })
         console.log(apiData)
+        // Fetch the 5 day Data for valid City
+        this.fetch5DayWeather(null, apiData.name)
     }
 
-    async fetch5DayWeather(strCity) {
+    async fetch5DayWeather(event, strCity) {
+        if (event !== null)
+            event.preventDefault()
+
         // Construct POST JSON
         const city = strCity
         // const country = strCountry
@@ -80,7 +92,7 @@ class WeatherApp extends React.Component {
         axios.post('api/weather5day', postData)
           .then((res) => {
             // console.log(res.data);
-            if (!res.data.main) {
+            if (!res.data.list) {
                 this.fiveDayWeatherDataReceived(null)
                 return null
             }
@@ -98,7 +110,7 @@ class WeatherApp extends React.Component {
         this.setState({
             weather5DayData: apiFiveDayData,
         })
-        console.log("Five: " + apiFiveDayData)
+        console.log(apiFiveDayData)
     } 
 
     render() {
