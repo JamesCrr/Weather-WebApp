@@ -2,6 +2,75 @@ html {
     scroll-behavior: smooth;
 }
 
+.temp-details {
+    padding-top: 6vh;
+    text-align: center;
+}
+.temp-actual {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: rgb(204, 204, 204);
+}
+.temp-feels-like {
+
+}
+.temp-min {
+
+}
+.temp-max {
+
+}
+.pressure {
+
+}
+.humidity {
+
+}
+
+.chart-container {
+    margin: 4vh 2% 0 2%;
+    padding-top: 2vh;
+    border-radius: 25px;
+    background-color: rgb(201, 201, 201);
+}
 .chart {
-    margin: 10vh 2% 0 2%;
+    
+}
+
+
+@media only screen and (max-width: 600px) {
+    .temp-actual {
+        font-size: 2rem;
+    }
+    .temp-feels-like,
+    .temp-min,
+    .temp-max,
+    .pressure,
+    .humidity {
+        font-size: 1rem;
+    }
+}
+@media only screen and (max-width: 400px) {
+    .temp-actual {
+        font-size: 1.6rem;
+    }
+    .temp-feels-like,
+    .temp-min,
+    .temp-max,
+    .pressure,
+    .humidity {
+        font-size: 0.9rem;
+    }
+}
+@media only screen and (max-width: 330px) {
+    .temp-actual {
+        font-size: 1.2rem;
+    }
+    .temp-feels-like,
+    .temp-min,
+    .temp-max,
+    .pressure,
+    .humidity {
+        font-size: 0.8rem;
+    }
 }

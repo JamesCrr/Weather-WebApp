@@ -10,7 +10,15 @@ class WeatherDetails extends React.Component {
             xAxisData: null,
             seriesData: null,
             weatherDates: null,
-            gottenWeatherData: false
+            gottenWeatherData: false,
+            tempDetails: {
+                temp: "0",
+                feels_like: "0",
+                min: "0",
+                max: "0",
+                pressure: "0",
+                humidity: "0",
+            }
         }
     }
 
@@ -20,7 +28,31 @@ class WeatherDetails extends React.Component {
             return;
           }
           else {
+            // Update Chart Data
             this.constructChartData()
+            // Update Temperature Details
+            let newTempDetails = {
+                temp: "0",
+                feels_like: "0",
+                min: "0",
+                max: "0",
+                pressure: "0",
+                humidity: "0",
+            };
+            let tempRepresentationStr = ""; 
+            if (this.props.tempRepresentation === "c")
+                tempRepresentationStr = " °C"
+            else
+                tempRepresentationStr = " °F"
+            newTempDetails.temp = this.props.weatherData.main.temp + tempRepresentationStr
+            newTempDetails.feels_like = this.props.weatherData.main.feels_like + tempRepresentationStr
+            newTempDetails.min = this.props.weatherData.main.temp_min + tempRepresentationStr
+            newTempDetails.max = this.props.weatherData.main.temp_max + tempRepresentationStr
+            newTempDetails.pressure = this.props.weatherData.main.pressure
+            newTempDetails.humidity = this.props.weatherData.main.humidity
+            this.setState({
+                tempDetails: newTempDetails
+            })
           }
         }
     }
@@ -137,9 +169,21 @@ class WeatherDetails extends React.Component {
         else 
             chart = <p></p>
 
+
         return (
-            <div style={{height:"100vh", backgroundColor:"white"}}>
-                {chart}
+            <div style={{minHeight:"100vh", backgroundColor:"white"}}>
+                <div className="temp-details">
+                    <h3 className="temp-actual">Temperature: {this.state.tempDetails.temp}</h3>
+                    <h3 className="temp-feels-like">Feels Like: {this.state.tempDetails.feels_like}</h3>
+                    <h3 className="temp-min">Min Temp: {this.state.tempDetails.min}</h3>
+                    <h3 className="temp-max">Max Temp: {this.state.tempDetails.max}</h3>
+                    <h3 className="pressure">Pressure: {this.state.tempDetails.pressure}</h3>
+                    <h3 className="humidity">Humidity: {this.state.tempDetails.humidity}</h3>
+                </div>
+
+                <div className="chart-container">
+                    {chart}
+                </div>
             </div>
         )
     }

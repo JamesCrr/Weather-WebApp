@@ -1,4 +1,4 @@
-h3, i {
+.date, .location, .actual-temp, .wi {
     color: rgb(204, 204, 204);
 }
 .current-weather-bg-img {

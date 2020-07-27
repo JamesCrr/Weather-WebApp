@@ -110,7 +110,7 @@ class WeatherApp extends React.Component {
         this.setState({
             weather5DayData: apiFiveDayData,
         })
-        console.log(apiFiveDayData)
+        // console.log(apiFiveDayData)
     } 
 
     render() {
