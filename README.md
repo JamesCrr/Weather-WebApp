@@ -3,8 +3,6 @@ A Fullstack Application that provides weather forecasts of a specific area along
 Hosted [here](https://webforecast.herokuapp.com) on Heroku.\
 **NOTE:** Initial startup of page might take a few minutes due to Heroku's free [dynos](https://www.heroku.com/dynos) plan
 
-<br/>
-
 ## Installation
 ### Setup
 Download the project or<br /> Clone using
